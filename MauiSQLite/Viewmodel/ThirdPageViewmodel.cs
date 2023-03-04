@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Microsoft.Maui.Controls;
 
 namespace MauiSQLite.Viewmodel
 {
@@ -34,10 +35,19 @@ namespace MauiSQLite.Viewmodel
                     hechizo.Descripcion = Descripcion;
 
                     dataCon.modificarHechizo(hechizoSeleccionado.Id, Nombre, Descripcion);
-
+                    ventanaAsync();
                     App.Current.MainPage.Navigation.PushAsync(new FirstPage());
                 }));
             }
+        }
+
+        private async Task ventanaAsync()
+        {
+            await Device.InvokeOnMainThreadAsync(async () =>
+            {
+                await Application.Current.MainPage.DisplayAlert("Título de la ventana emergente", "Modificación de campo completada", "Aceptar");
+            });
+
         }
 
         private String nombre;
