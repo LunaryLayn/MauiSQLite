@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MauiSQLite.View.SecondPage"
-             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             Title="SecondPage">
+             x:Class="MauiSQLite.View.ThirdPage"
+             Title="ThirdPage">
     <StackLayout>
         <Entry Placeholder="Nombre" Text="{Binding Nombre}"/>
         <Entry Placeholder="Descripción" Text="{Binding Descripcion}"/>
-        <Button Text="Enviar" Command="{Binding AddCommand}"/>
+        <Button Text="Enviar" Command="{Binding ModifyCommand}"/>
     </StackLayout>
 </ContentPage>

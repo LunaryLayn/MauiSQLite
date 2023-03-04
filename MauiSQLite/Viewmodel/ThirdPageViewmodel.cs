@@ -8,35 +8,37 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Microsoft.Maui.Controls;
 
 namespace MauiSQLite.Viewmodel
 {
-    public class SecondPageViewmodel : BindableObject
+    public class ThirdPageViewmodel : BindableObject
     {
-
+        private Hechizo hechizoSeleccionado;
         public Conexion dataCon = new Conexion();
+        public ThirdPageViewmodel(Hechizo hechizoSeleccionado)
+        {
+            Nombre = hechizoSeleccionado.Nombre;
+            Descripcion = hechizoSeleccionado.Descripcion;
+            this.hechizoSeleccionado = hechizoSeleccionado;
+        }
 
-        private ICommand _addCommand { get; set; }
-        public ICommand AddCommand
+        private ICommand _modifyCommand { get; set; }
+        public ICommand ModifyCommand
         {
             get
             {
-                return _addCommand ?? (_addCommand = new Command(() =>
+                return _modifyCommand ?? (_modifyCommand = new Command(() =>
                 {
                     Hechizo hechizo = new Hechizo();
                     hechizo.Nombre = Nombre;
                     hechizo.Descripcion = Descripcion;
 
-                    dataCon.addHechizo(hechizo);
+                    dataCon.modificarHechizo(hechizoSeleccionado.Id, Nombre, Descripcion);
 
-
-                   App.Current.MainPage.Navigation.PushAsync(new FirstPage());
+                    App.Current.MainPage.Navigation.PushAsync(new FirstPage());
                 }));
             }
         }
-
-        
 
         private String nombre;
         public String Nombre
@@ -48,8 +50,9 @@ namespace MauiSQLite.Viewmodel
                 OnPropertyChanged();
             }
         }
-
         private String descripcion;
+        
+
         public String Descripcion
         {
             get { return descripcion; }
@@ -60,9 +63,7 @@ namespace MauiSQLite.Viewmodel
             }
         }
 
-
-
-    public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged(string propertyName)
         {
             if (PropertyChanged != null)
@@ -70,5 +71,6 @@ namespace MauiSQLite.Viewmodel
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
+
     }
 }

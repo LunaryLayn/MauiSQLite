@@ -55,6 +55,19 @@ namespace MauiSQLite.Viewmodel
             }
         }
 
+        public ICommand _modifyHechizoCommand;
+        public ICommand ModifyHechizoCommand
+        {
+            get
+            {
+                return _modifyHechizoCommand ?? (_modifyHechizoCommand = new Command(() =>
+                {
+
+                    App.Current.MainPage.Navigation.PushAsync(new ThirdPage(hechizoSeleccionado));
+                }));
+            }
+        }
+
         private ICommand _refreshListCommand { get; set; }
         public ICommand RefreshListCommand
         {

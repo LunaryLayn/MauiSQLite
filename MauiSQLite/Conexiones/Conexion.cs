@@ -148,7 +148,7 @@ namespace MauiSQLite.Conexiones
 
         }
 
-      /*  public void modificarHechizo(int Identificador, string nombre, string direccion, string telefono)
+        public void modificarHechizo(int Identificador, string nombre, string descripcion)
         {
             path = Path.Combine(FileSystem.AppDataDirectory, "BDD.db");
 
@@ -161,13 +161,12 @@ namespace MauiSQLite.Conexiones
             if (Hechizo != null)
             {
                 Hechizo.Nombre = nombre;
-                Hechizo.Direccion = direccion;
-                Hechizo.Telefono = telefono;
+                Hechizo.Descripcion = descripcion;
 
                 conn.Update(Hechizo);
             }
 
-        }*/
+        }
 
     }
 }
