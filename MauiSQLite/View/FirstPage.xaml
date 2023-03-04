@@ -11,7 +11,7 @@
     
     
     <StackLayout>
-        <ListView x:Name="miListView" ItemsSource="{Binding ListaHechizos}">
+        <ListView x:Name="miListView" ItemsSource="{Binding ListaHechizos}" SelectedItem="{Binding HechizoSeleccionado}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <TextCell Text="{Binding Nombre}" 
@@ -21,8 +21,10 @@
         </ListView>
 
         <StackLayout Orientation="Horizontal">
-            <Button Text="Refrescar ListView"  />
+            <Button Text="Refrescar ListView" Command="{Binding RefreshListCommand}" />
             <Button Text="Añadir nuevo registro" Command="{Binding AddHechizoCommand}" />
+            <Button Text="Modificar campo" Command="{Binding Button3Command}" />
+            <Button Text="Borrar campo" Command="{Binding DeleteHechizoCommand}" />
         </StackLayout>
     </StackLayout>
 </ContentPage>

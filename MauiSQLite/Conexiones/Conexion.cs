@@ -131,7 +131,7 @@ namespace MauiSQLite.Conexiones
 
 
 
-      /*  public void borrarHechizo(int Identificador)
+       public void deleteHechizo(int Identificador)
         {
             path = Path.Combine(FileSystem.AppDataDirectory, "BDD.db");
 
@@ -148,7 +148,7 @@ namespace MauiSQLite.Conexiones
 
         }
 
-        public void modificarHechizo(int Identificador, string nombre, string direccion, string telefono)
+      /*  public void modificarHechizo(int Identificador, string nombre, string direccion, string telefono)
         {
             path = Path.Combine(FileSystem.AppDataDirectory, "BDD.db");
 

@@ -3,10 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiSQLite.View.SecondPage"
              Title="SecondPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <StackLayout>
+        <Entry Placeholder="Nombre" Text="{Binding Nombre}"/>
+        <Entry Placeholder="Descripción" Text="{Binding Descripcion}"/>
+        <Button Text="Enviar" Command="{Binding AddCommand}"/>
+    </StackLayout>
 </ContentPage>

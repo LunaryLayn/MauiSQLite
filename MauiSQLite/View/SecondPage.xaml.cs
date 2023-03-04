@@ -8,5 +8,6 @@ public partial class SecondPage : ContentPage
 	{
 		InitializeComponent();
 
-	}
+        BindingContext = new SecondPageViewmodel();
+    }
 }

@@ -30,6 +30,7 @@ namespace MauiSQLite.Viewmodel
          } */
 
         //Forma Copilot
+        
         public ICommand AddHechizoCommand
         {
             get
@@ -41,6 +42,31 @@ namespace MauiSQLite.Viewmodel
             }
         }
 
+        public ICommand _deleteHechizoCommand;
+        public ICommand DeleteHechizoCommand
+        {
+            get
+            {
+                return _deleteHechizoCommand ?? (_deleteHechizoCommand = new Command(() =>
+                {
+                    dataCon.deleteHechizo(HechizoSeleccionado.Id);
+                    ListaHechizos = dataCon.LeerHechizos();
+                }));
+            }
+        }
+
+        private ICommand _refreshListCommand { get; set; }
+        public ICommand RefreshListCommand
+        {
+            get
+            {
+                return _refreshListCommand ?? (_refreshListCommand = new Command(() =>
+                {
+                    ListaHechizos = dataCon.LeerHechizos();
+                }));
+            }
+        }
+
         public FirstPageViewmodel()
         {
             if (!dataCon.compruebaSiExisteBD("BDD.db"))
@@ -48,7 +74,7 @@ namespace MauiSQLite.Viewmodel
                 dataCon.CreateDatabase();
                 dataCon.addPrimerosHechizos();
             }
-            listaHechizos = dataCon.LeerHechizos();
+            ListaHechizos = dataCon.LeerHechizos();
         }
 
         private List<Hechizo> listaHechizos;
@@ -62,14 +88,18 @@ namespace MauiSQLite.Viewmodel
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void OnPropertyChanged(string propertyName)
+        private Hechizo hechizoSeleccionado;
+        public Hechizo HechizoSeleccionado
         {
-            if (PropertyChanged != null)
+            get { return hechizoSeleccionado; }
+            set
             {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+                hechizoSeleccionado = value;
+                OnPropertyChanged();
             }
         }
+
+        
 
     }
 }
